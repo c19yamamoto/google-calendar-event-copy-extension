@@ -1,6 +1,6 @@
-// ボタンを挿入したい部分のクラス名に変更してください
+// ボタンを挿入したい部分のクラス名 (デフォルトではヘッダー部分)
 const headClass = ".DmDTHe";
-// 多分こっちは全員同じ
+// イベント選択時に表示されるモーダルっぽいコンテンツのID
 const eventModalId = "xDetDlg";
 
 const buttonStyles = {
@@ -37,7 +37,7 @@ const addCopyEventListener = (button) => {
   button.addEventListener("click", () => {
     const eventElement = document.getElementById(eventModalId);
     if (!eventElement) {
-      window.alert("Please select the target event 🙇");
+      window.alert("コピーしたいイベントを選択してください");
       return;
     }
     const eventId = eventElement.dataset.eventid;
