@@ -74,6 +74,7 @@ const observerCallback = (mutationsList) => {
       if (container && !container.querySelector("#copy-event-svg")) {
         const svgContainer = createSvgContainer();
         svgContainer.id = "copy-event-svg";
+        // コンテナの最後から2番目に挿入
         if (container.children.length > 1) {
           container.insertBefore(
             svgContainer,
@@ -93,6 +94,7 @@ const initObserver = () => {
 };
 
 const style = document.createElement("style");
+
 style.innerHTML = `
 @keyframes clickAnimation {
   0% { transform: scale(1); }
@@ -103,6 +105,7 @@ style.innerHTML = `
   transition: transform 0.2s ease;
 }
 `;
+
 document.head.appendChild(style);
 
 initObserver();

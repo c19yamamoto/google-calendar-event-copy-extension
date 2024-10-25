@@ -1,14 +1,14 @@
 # Google Calendar でイベントURLをコピーするボタン表示するスクリプト
 
-こんな感じのが出てくるようになる
+Google Calendar では、なぜかイベントをコピーするためのインタフェースが存在しない。
+
+このスクリプトを拡張機能として導入しておくことで、下記画像のようにイベント表示時にリンクをコピーするボタンを表示できる。
 
 <div align="center">
 
-![image](https://github.com/user-attachments/assets/41203868-bdb3-4d38-b8bc-886a84dd20ce)
+![image](https://github.com/user-attachments/assets/ad1b46da-88fa-40c6-81e0-d3e9d554700b)
 
 </div>
-
-共有したいイベントを選択してボタンを押すと、イベントのURLがクリップボードにコピーされる。
 
 ## インストール
 
@@ -16,7 +16,13 @@
 2. Google Chrome にて、Chrome 拡張機能設定ページ (`chrome://extensions/`)にアクセスして、右上の「デベロッパーモード」を有効にしてください
 3. 「パッケージ化されていない拡張機能を読み込む」をクリックして、このリポジトリをクローンしたディレクトリを選択してください
 
-## 使い方
-1. Google Calendar にアクセスしてください
-2. URLを取得したいイベントを選択してください
-3. 右上の `Copy URL` ボタンをクリックすると、イベントのURLがクリップボードにコピーされます
+## アップデート
+たまに機能更新するかもしれません。
+
+git pull し、Chrome 拡張機能設定ページで更新ボタンをクリックしてください。
+
+<div align="center">
+
+![image](https://github.com/user-attachments/assets/95915b63-7c37-4580-8695-57765752ed7f)
+
+</div>
