@@ -7,6 +7,7 @@ const headClass = ".pPTZAe";
 const svgNamespace = "http://www.w3.org/2000/svg";
 
 const createSvgElement = () => {
+  // font-awesome の link アイコンを使用
   const svgWrapper = document.createElementNS(svgNamespace, "svg");
   svgWrapper.setAttribute("xmlns", svgNamespace);
   svgWrapper.setAttribute("viewBox", "0 0 640 512");
