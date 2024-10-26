@@ -1,6 +1,6 @@
 # Google Calendar でイベントURLをコピーするボタン表示するスクリプト
 
-[Google Calendar](https://calendar.google.com/calendar) では、なぜかイベントをコピーするためのインタフェースが存在しない。
+[Google Calendar](https://calendar.google.com/calendar) では、なぜかイベントのURLをコピーするためのインタフェースが存在しない。
 
 このスクリプトを拡張機能として導入しておくことで、下記画像のようにイベント表示時にリンクをコピーするボタンを表示できる。
 
