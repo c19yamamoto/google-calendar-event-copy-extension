@@ -47,6 +47,8 @@ const createSvgContainer = () => {
     justifyContent: "center",
     alignItems: "center",
     cursor: "pointer",
+    width: "40px",
+    height: "40px",
   };
   applyStyles(button, buttonStyles);
   const svgElement = createSvgElement();
