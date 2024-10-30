@@ -49,6 +49,7 @@ const createSvgContainer = () => {
     cursor: "pointer",
     width: "40px",
     height: "40px",
+    zIndex: "1",
   };
   applyStyles(button, buttonStyles);
   const svgElement = createSvgElement();
