@@ -43,7 +43,7 @@ const createSvgContainer = () => {
   };
   applyStyles(button, buttonStyles);
   const svgElement = createSvgElement();
-  svgElement.addEventListener("click", () => {
+  button.addEventListener("click", () => {
     const eventId = document.getElementById(eventModalId).dataset.eventid;
     const eventUrl = "https://www.google.com/calendar/event?eid=" + eventId;
     navigator.clipboard.writeText(eventUrl);
