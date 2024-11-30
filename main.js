@@ -4,6 +4,9 @@ const eventModalId = "xDetDlg";
 // 挿入するコンテナのクラス
 const headClass = ".pPTZAe";
 
+// タイトル情報を持つクラス
+const titleClass = ".UfeRlc";
+
 const svgNamespace = "http://www.w3.org/2000/svg";
 
 const createSvgElement = () => {
@@ -29,9 +32,30 @@ const applyStyles = (element, styles) => {
   });
 };
 
+const animateSvgClick = (svgElement) => {
+  svgElement.style.animation = "clickAnimation 0.2s ease";
+  setTimeout(() => {
+    svgElement.style.animation = "";
+  }, 200);
+};
+
+const copyEventUrlToClipboard = () => {
+  const eventId = document.getElementById(eventModalId).dataset.eventid;
+  const eventUrl = `https://www.google.com/calendar/event?eid=${eventId}`;
+  chrome.storage.sync.get("withTitleEnabled", (data) => {
+    const title = data.withTitleEnabled
+      ? document.querySelector(titleClass)?.dataset.text
+      : "";
+    const textToCopy = data.withTitleEnabled
+      ? `[${title}](${eventUrl})`
+      : eventUrl;
+    navigator.clipboard.writeText(textToCopy);
+  });
+};
+
 const createSvgContainer = () => {
   const button = document.createElement("button");
-  const buttonStyles = {
+  applyStyles(button, {
     all: "unset",
     display: "flex",
     justifyContent: "center",
@@ -40,19 +64,15 @@ const createSvgContainer = () => {
     width: "40px",
     height: "40px",
     zIndex: "1",
-  };
-  applyStyles(button, buttonStyles);
+  });
+
   const svgElement = createSvgElement();
   button.addEventListener("click", () => {
-    const eventId = document.getElementById(eventModalId).dataset.eventid;
-    const eventUrl = "https://www.google.com/calendar/event?eid=" + eventId;
-    navigator.clipboard.writeText(eventUrl);
-    svgElement.style.animation = "clickAnimation 0.2s ease";
-    setTimeout(() => {
-      svgElement.style.animation = "";
-    }, 200);
+    copyEventUrlToClipboard();
+    animateSvgClick(svgElement);
   });
   button.appendChild(svgElement);
+
   return button;
 };
 
@@ -60,32 +80,25 @@ const observerCallback = (mutationsList) => {
   let shouldReAddListener = false;
 
   for (let mutation of mutationsList) {
-    if (mutation.type === "childList") {
-      const eventElement = document.getElementById(eventModalId);
-      if (eventElement) {
-        shouldReAddListener = true;
-        break;
-      }
+    if (
+      mutation.type === "childList" &&
+      document.getElementById(eventModalId)
+    ) {
+      shouldReAddListener = true;
+      break;
     }
   }
 
   if (shouldReAddListener) {
-    const eventElement = document.getElementById(eventModalId);
-    if (eventElement) {
-      const container = document.querySelector(headClass);
-      if (container && !container.querySelector("#copy-event-svg")) {
-        const svgContainer = createSvgContainer();
-        svgContainer.id = "copy-event-svg";
-        // コンテナの最後から2番目に挿入
-        if (container.children.length > 1) {
-          container.insertBefore(
-            svgContainer,
-            container.children[container.children.length - 1]
-          );
-        } else {
-          container.appendChild(svgContainer);
-        }
-      }
+    const container = document.querySelector(headClass);
+    if (container && !container.querySelector("#copy-event-svg")) {
+      const svgContainer = createSvgContainer();
+      svgContainer.id = "copy-event-svg";
+      // コンテナの最後から2番目に挿入
+      container.insertBefore(
+        svgContainer,
+        container.children[container.children.length - 1]
+      );
     }
   }
 };
@@ -96,7 +109,6 @@ const initObserver = () => {
 };
 
 const style = document.createElement("style");
-
 style.innerHTML = `
 @keyframes clickAnimation {
   0% { transform: scale(1); }
@@ -107,7 +119,6 @@ style.innerHTML = `
   transition: transform 0.2s ease;
 }
 `;
-
 document.head.appendChild(style);
 
 initObserver();
