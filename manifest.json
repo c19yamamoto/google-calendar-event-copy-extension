@@ -3,11 +3,15 @@
   "name": "GoogleCalendar Event URL Copier",
   "version": "1.0",
   "description": "Adds a button to copy the event URL to clipboard on Google Calendar",
-  "permissions": ["clipboardWrite"],
+  "permissions": ["clipboardWrite", "storage"],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  },
   "content_scripts": [
     {
       "matches": ["https://calendar.google.com/*"],
-      "js": ["content.js"],
+      "js": ["main.js"],
       "run_at": "document_end"
     }
   ]
