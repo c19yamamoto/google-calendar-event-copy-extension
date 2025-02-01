@@ -39,17 +39,30 @@ const animateSvgClick = (svgElement) => {
   }, 200);
 };
 
-const copyEventUrlToClipboard = () => {
+const copyEventUrlToClipboard = (svgElement) => {
   const eventId = document.getElementById(eventModalId).dataset.eventid;
   const eventUrl = `https://www.google.com/calendar/event?eid=${eventId}`;
   chrome.storage.sync.get("withTitleEnabled", (data) => {
-    const title = data.withTitleEnabled
-      ? document.querySelector(titleClass)?.dataset.text
-      : "";
-    const textToCopy = data.withTitleEnabled
-      ? `[${title}](${eventUrl})`
-      : eventUrl;
-    navigator.clipboard.writeText(textToCopy);
+    if (data.withTitleEnabled) {
+      const title = document.querySelector(titleClass)?.dataset.text || "";
+      const eventData = {
+        title: title,
+        html: `<a href="${eventUrl}">${title}</a>`,
+      };
+
+      navigator.clipboard
+        .write([
+          new ClipboardItem({
+            "text/plain": new Blob([eventData.title], { type: "text/plain" }),
+            "text/html": new Blob([eventData.html], { type: "text/html" }),
+          }),
+        ])
+        .then(() => animateSvgClick(svgElement));
+    } else {
+      navigator.clipboard
+        .writeText(eventUrl)
+        .then(() => animateSvgClick(svgElement));
+    }
   });
 };
 
@@ -67,10 +80,7 @@ const createSvgContainer = () => {
   });
 
   const svgElement = createSvgElement();
-  button.addEventListener("click", () => {
-    copyEventUrlToClipboard();
-    animateSvgClick(svgElement);
-  });
+  button.addEventListener("click", () => copyEventUrlToClipboard(svgElement));
   button.appendChild(svgElement);
 
   return button;
