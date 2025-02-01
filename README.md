@@ -24,13 +24,7 @@
 
 <div align="center">
 
-<div style="display:flex; justify-content:center; align-items:center; gap:50px;">
-
-<img width="300px" src="https://github.com/user-attachments/assets/a87661c2-d142-44d9-a11a-d72a1be64697">
-<span style="font-size: 4em;">→</span>
-<img width="400px" height="auto" src="https://github.com/user-attachments/assets/f579f44e-e1ad-4854-85b2-9d313738d847">
-
-</div>
+<img width="800px" src="https://github.com/user-attachments/assets/b36b61f0-77b4-44ae-91a5-3721d83d81b5">
 
 </div>
 
