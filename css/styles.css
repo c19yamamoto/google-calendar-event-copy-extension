@@ -1,0 +1,40 @@
+/**
+ * Google Calendarイベントコピー拡張機能のスタイル
+ */
+
+/* クリックアニメーション */
+@keyframes clickAnimation {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}
+
+/* コピーボタンのスタイル */
+#copy-event-svg {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
+
+/* SVGアイコンのスタイル */
+#copy-event-svg svg {
+  transition: transform 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+/* SVGパスのスタイル */
+#copy-event-svg svg path {
+  fill: #000;
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  #copy-event-svg svg path {
+    fill: #fff;
+  }
+}
