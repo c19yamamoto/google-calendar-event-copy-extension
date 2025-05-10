@@ -1,3 +1,8 @@
+:root {
+  --copy-button-size: 40px;
+  --transition-duration: 0.2s;
+}
+
 /* クリックアニメーション */
 @keyframes clickAnimation {
   0% {
@@ -18,11 +23,11 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: var(--copy-button-size);
+  height: var(--copy-button-size);
   z-index: 1;
   border-radius: 50%;
-  transition: background-color 0.2s ease;
+  transition: background-color var(--transition-duration) ease;
 }
 
 #copy-event-svg:hover {
@@ -32,7 +37,7 @@
 /* SVGアイコンのスタイル */
 #copy-event-svg svg,
 #copy-event-svg .svg-icon {
-  transition: transform 0.2s ease;
+  transition: transform var(--transition-duration) ease;
   pointer-events: none;
 }
 
