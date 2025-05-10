@@ -45,16 +45,11 @@ const initObserver = () => {
     // body要素の子要素の変更を監視
     observer.observe(document.body, { childList: true, subtree: true });
 
-    console.log(
-      "[Google Calendar Event Copy Extension] DOM observation started"
-    );
+    logInfo("DOM observation started");
 
     return observer;
   } catch (error) {
-    console.error(
-      "[Google Calendar Event Copy Extension] Failed to initialize observer:",
-      error
-    );
+    logError("Failed to initialize observer:", error);
     return null;
   }
 };

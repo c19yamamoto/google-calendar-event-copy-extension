@@ -32,10 +32,7 @@ const copyToClipboard = async (eventUrl, svgElement, title = "") => {
     // コピー成功時のアニメーション
     animateCopyButtonClick(svgElement);
   } catch (error) {
-    console.error(
-      "[Google Calendar Event Copy Extension] Failed to copy to clipboard:",
-      error
-    );
+    logError("Failed to copy to clipboard:", error);
 
     // リッチテキストコピーに失敗した場合、URLのみをコピーを試みる
     if (title) {
@@ -43,10 +40,7 @@ const copyToClipboard = async (eventUrl, svgElement, title = "") => {
         await navigator.clipboard.writeText(eventUrl);
         animateCopyButtonClick(svgElement);
       } catch (error) {
-        console.error(
-          "[Google Calendar Event Copy Extension] Failed to copy URL:",
-          error
-        );
+        logError("Failed to copy URL:", error);
       }
     }
   }
@@ -62,15 +56,13 @@ const copyEventUrlToClipboard = (svgElement) => {
     GOOGLE_CALENDAR_DOM_SELECTORS.EVENT_MODAL_ID
   );
   if (!eventModal) {
-    console.error(
-      "[Google Calendar Event Copy Extension] Event modal not found"
-    );
+    logError("Event modal not found");
     return;
   }
 
   const eventId = eventModal.dataset.eventid;
   if (!eventId) {
-    console.error("[Google Calendar Event Copy Extension] Event ID not found");
+    logError("Event ID not found");
     return;
   }
 

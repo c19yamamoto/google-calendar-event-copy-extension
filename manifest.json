@@ -13,6 +13,7 @@
       "matches": ["https://calendar.google.com/*"],
       "js": [
         "js/constants.js",
+        "js/util/logger.js",
         "js/util/svg.js",
         "js/util/clipboard.js",
         "js/event-observer.js",
