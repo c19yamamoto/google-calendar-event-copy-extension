@@ -11,7 +11,7 @@ const createCopyIcon = () => {
     </svg>
   `;
 
-  // クリックイベントを親要素に伝播させる
+  // クリックイベントを親要素 (ボタン) に伝播させる
   svgContainer.style.pointerEvents = "none";
 
   return svgContainer;

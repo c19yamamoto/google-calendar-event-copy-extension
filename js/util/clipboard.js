@@ -11,7 +11,6 @@ const getEventTitle = () =>
  */
 const copyToClipboard = async (eventUrl, svgElement, title = "") => {
   try {
-    // タイトルが提供されている場合はリッチテキストとしてコピー
     if (title) {
       const eventData = {
         title: title,
@@ -25,7 +24,6 @@ const copyToClipboard = async (eventUrl, svgElement, title = "") => {
         }),
       ]);
     } else {
-      // タイトルがない場合はURLのみをコピー
       await navigator.clipboard.writeText(eventUrl);
     }
 
