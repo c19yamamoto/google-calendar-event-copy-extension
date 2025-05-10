@@ -21,11 +21,5 @@
       "css": ["css/styles.css"],
       "run_at": "document_end"
     }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["assets/images/link-icon.svg"],
-      "matches": ["https://calendar.google.com/*"]
-    }
   ]
 }
