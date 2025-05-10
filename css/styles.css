@@ -4,9 +4,15 @@
 
 /* クリックアニメーション */
 @keyframes clickAnimation {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.8); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* コピーボタンのスタイル */
@@ -22,7 +28,8 @@
 }
 
 /* SVGアイコンのスタイル */
-#copy-event-svg svg {
+#copy-event-svg svg,
+#copy-event-svg .svg-icon {
   transition: transform 0.2s ease;
   mix-blend-mode: difference;
 }
@@ -32,9 +39,18 @@
   fill: #000;
 }
 
+/* SVGアイコンのフィルタ（ダークモード対応用） */
+#copy-event-svg .svg-icon {
+  filter: brightness(1);
+}
+
 /* ダークモード対応 */
 @media (prefers-color-scheme: dark) {
   #copy-event-svg svg path {
     fill: #fff;
+  }
+  
+  #copy-event-svg .svg-icon {
+    filter: brightness(0) invert(1);
   }
 }
