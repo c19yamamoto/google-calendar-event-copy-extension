@@ -28,7 +28,7 @@ const createSvgElement = () => {
 /**
  * SVG要素にクリックアニメーションを適用
  */
-const animateSvgClick = element => {
+const animateSvgClick = (element) => {
   // クリックアニメーションを適用
   element.style.animation = `clickAnimation ${CLICK_DURATION / 1000}s ease`;
 
@@ -41,10 +41,10 @@ const animateSvgClick = element => {
 /**
  * コピーボタン用のコンテナ要素を作成
  */
-const createSvgContainer = onClickHandler => {
+const createSvgContainer = (onClickHandler) => {
   // ボタン要素を作成
   const button = document.createElement("button");
-  button.id = DOM_SELECTORS.COPY_BUTTON_ID;
+  button.id = COPY_BUTTON_ID;
 
   // SVG要素を作成してボタンに追加
   const svgElement = createSvgElement();

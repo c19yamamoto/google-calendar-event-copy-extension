@@ -3,7 +3,6 @@
   --transition-duration: 0.2s;
 }
 
-/* クリックアニメーション */
 @keyframes clickAnimation {
   0% {
     transform: scale(1);
@@ -16,7 +15,6 @@
   }
 }
 
-/* コピーボタンのスタイル */
 #copy-event-svg {
   all: unset;
   display: flex;
@@ -30,18 +28,18 @@
   transition: background-color var(--transition-duration) ease;
 }
 
+/* ホバー時の背景色: Google Calendar の他のボタンに合わせた */
 #copy-event-svg:hover {
   background-color: rgba(60, 64, 67, 0.08);
 }
 
-/* SVGアイコンのスタイル */
 #copy-event-svg svg,
 #copy-event-svg .svg-icon {
   transition: transform var(--transition-duration) ease;
   pointer-events: none;
 }
 
-/* SVGパスのスタイル */
+/* SVG 自体の色: Google Calendar の他のボタンに合わせた */
 #copy-event-svg svg path {
   fill: #444746;
 }

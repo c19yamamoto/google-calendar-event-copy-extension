@@ -5,13 +5,15 @@
 /**
  * イベントIDからイベントURLを生成
  */
-const generateEventUrl = eventId => `${EVENT_BASE_URL}${eventId}`;
+const generateEventUrl = (eventId) =>
+  `${GOOGLE_CALENDAR_EVENT_BASE_URL}${eventId}`;
 
 /**
  * イベントのタイトルを取得
  */
 const getEventTitle = () =>
-  document.querySelector(DOM_SELECTORS.TITLE_CLASS)?.dataset.text || "";
+  document.querySelector(GOOGLE_CALENDAR_DOM_SELECTORS.TITLE_CLASS)?.dataset
+    .text || "";
 
 /**
  * イベントURLをクリップボードにコピー
@@ -58,9 +60,11 @@ const copyToClipboard = async (eventUrl, svgElement, title = "") => {
  * 現在表示されているイベントのURLをクリップボードにコピー
  * ユーザー設定に基づき、タイトル付きまたはURLのみをコピー
  */
-const copyEventUrlToClipboard = svgElement => {
+const copyEventUrlToClipboard = (svgElement) => {
   // イベントIDを取得
-  const eventModal = document.getElementById(DOM_SELECTORS.EVENT_MODAL_ID);
+  const eventModal = document.getElementById(
+    GOOGLE_CALENDAR_DOM_SELECTORS.EVENT_MODAL_ID
+  );
   if (!eventModal) {
     console.error("Event modal not found");
     return;
@@ -75,7 +79,7 @@ const copyEventUrlToClipboard = svgElement => {
   const eventUrl = generateEventUrl(eventId);
 
   // ユーザー設定を取得してコピー方法を決定
-  chrome.storage.sync.get(STORAGE_KEYS.WITH_TITLE_ENABLED, data => {
+  chrome.storage.sync.get(STORAGE_KEYS.WITH_TITLE_ENABLED, (data) => {
     const title = data[STORAGE_KEYS.WITH_TITLE_ENABLED] ? getEventTitle() : "";
     copyToClipboard(eventUrl, svgElement, title);
   });

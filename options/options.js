@@ -7,12 +7,12 @@ const saveOptions = () => {
     status.textContent = "Options saved.";
     setTimeout(() => {
       status.textContent = "";
-    }, STATUS_MESSAGE_DURATION);
+    }, OPTION_STATUS_MESSAGE_DURATION);
   });
 };
 
 const restoreOptions = () => {
-  chrome.storage.sync.get({ withTitleEnabled: false }, items => {
+  chrome.storage.sync.get({ withTitleEnabled: false }, (items) => {
     document.getElementById("with-title-toggle").checked =
       items.withTitleEnabled;
   });

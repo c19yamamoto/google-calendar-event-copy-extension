@@ -1,20 +1,17 @@
-/**
- * Google Calendarイベントコピー拡張機能の定数
- */
-
-// DOM要素の識別子
-const DOM_SELECTORS = {
+// Google Calendar の DOM要素の識別子
+const GOOGLE_CALENDAR_DOM_SELECTORS = {
   // イベントモーダルのID
   EVENT_MODAL_ID: "xDetDlg",
   // 挿入するコンテナのクラス
   HEAD_CLASS: ".pPTZAe",
-  // タイトル情報を持つクラス
+  // Google Calendar の タイトル情報を持つクラス
   TITLE_CLASS: ".UfeRlc",
-  // 追加するSVGボタンのID
-  COPY_BUTTON_ID: "copy-event-svg",
 };
 
-// SVG関連の定数
+// 追加するボタンのID
+const COPY_BUTTON_ID = "copy-event-svg";
+
+// SVG 関連の定数
 const SVG_ICONS = {
   // 名前空間
   NAMESPACE: "http://www.w3.org/2000/svg",
@@ -26,10 +23,11 @@ const SVG_ICONS = {
 const CLICK_DURATION = 200;
 
 // ステータスメッセージの表示時間（ミリ秒）
-const STATUS_MESSAGE_DURATION = 750;
+const OPTION_STATUS_MESSAGE_DURATION = 750;
 
 // Google Calendarイベントの基本URL
-const EVENT_BASE_URL = "https://www.google.com/calendar/event?eid=";
+const GOOGLE_CALENDAR_EVENT_BASE_URL =
+  "https://www.google.com/calendar/event?eid=";
 
 // ストレージキー
 const STORAGE_KEYS = {
