@@ -7,7 +7,7 @@ const saveOptions = () => {
     status.textContent = "Options saved.";
     setTimeout(() => {
       status.textContent = "";
-    }, 750);
+    }, OPTION_STATUS_MESSAGE_DURATION);
   });
 };
 

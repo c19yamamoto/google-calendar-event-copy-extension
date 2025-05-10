@@ -1,0 +1,23 @@
+{
+  "name": "google-calendar-event-copy-extension",
+  "version": "1.0.0",
+  "description": "Adds a button to copy the event URL to clipboard on Google Calendar",
+  "main": "main.js",
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,json,css,html}\"",
+    "format:check": "prettier --check \"**/*.{js,json,css,html}\"",
+    "prepare": "husky"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "9.1.7",
+    "lint-staged": "15.5.2",
+    "prettier": "3.5.3"
+  },
+  "lint-staged": {
+    "**/*.{js,json,css,html}": [
+      "prettier --write"
+    ]
+  }
+}

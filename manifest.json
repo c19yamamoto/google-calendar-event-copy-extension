@@ -11,7 +11,15 @@
   "content_scripts": [
     {
       "matches": ["https://calendar.google.com/*"],
-      "js": ["main.js"],
+      "js": [
+        "js/constants.js",
+        "js/util/logger.js",
+        "js/util/svg.js",
+        "js/util/clipboard.js",
+        "js/event-observer.js",
+        "main.js"
+      ],
+      "css": ["css/styles.css"],
       "run_at": "document_end"
     }
   ]
