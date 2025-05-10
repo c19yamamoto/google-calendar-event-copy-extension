@@ -1,7 +1,3 @@
-/**
- * Google Calendarイベントコピー拡張機能のスタイル
- */
-
 /* クリックアニメーション */
 @keyframes clickAnimation {
   0% {
@@ -25,32 +21,33 @@
   width: 40px;
   height: 40px;
   z-index: 1;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+#copy-event-svg:hover {
+  background-color: rgba(60, 64, 67, 0.08);
 }
 
 /* SVGアイコンのスタイル */
 #copy-event-svg svg,
 #copy-event-svg .svg-icon {
   transition: transform 0.2s ease;
-  mix-blend-mode: difference;
+  pointer-events: none;
 }
 
 /* SVGパスのスタイル */
 #copy-event-svg svg path {
-  fill: #000;
-}
-
-/* SVGアイコンのフィルタ（ダークモード対応用） */
-#copy-event-svg .svg-icon {
-  filter: brightness(1);
+  fill: #444746;
 }
 
 /* ダークモード対応 */
 @media (prefers-color-scheme: dark) {
   #copy-event-svg svg path {
-    fill: #fff;
+    fill: #c4c7c5;
   }
-  
-  #copy-event-svg .svg-icon {
-    filter: brightness(0) invert(1);
+
+  #copy-event-svg:hover {
+    background-color: rgba(232, 234, 237, 0.08);
   }
 }
