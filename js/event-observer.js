@@ -1,8 +1,4 @@
 /**
- * DOM変更の監視とイベントモーダルへのボタン追加を管理
- */
-
-/**
  * イベントモーダルにコピーボタンを追加
  */
 const addCopyButtonToModal = () => {
@@ -14,11 +10,11 @@ const addCopyButtonToModal = () => {
   // コンテナが存在し、かつまだボタンが追加されていない場合
   if (container && !container.querySelector(`#${COPY_BUTTON_ID}`)) {
     // コピーボタンを作成
-    const svgContainer = createSvgContainer(copyEventUrlToClipboard);
+    const copyButton = createCopyButton(copyEventUrlToClipboard);
 
-    // コンテナの最後から2番目に挿入（閉じるボタンの前）
+    // コンテナの最後から2番目に挿入（「閉じる」ボタンの前）
     container.insertBefore(
-      svgContainer,
+      copyButton,
       container.children[container.children.length - 1]
     );
   }
@@ -29,22 +25,14 @@ const addCopyButtonToModal = () => {
  */
 const observerCallback = (mutationsList) => {
   // イベントモーダルが表示されたかチェック
-  let isEventModalVisible = false;
-
-  for (const mutation of mutationsList) {
-    if (
+  const isEventModalVisible = mutationsList.some(
+    (mutation) =>
       mutation.type === "childList" &&
       document.getElementById(GOOGLE_CALENDAR_DOM_SELECTORS.EVENT_MODAL_ID)
-    ) {
-      isEventModalVisible = true;
-      break;
-    }
-  }
+  );
 
   // イベントモーダルが表示された場合、コピーボタンを追加
-  if (isEventModalVisible) {
-    addCopyButtonToModal();
-  }
+  if (isEventModalVisible) addCopyButtonToModal();
 };
 
 /**
@@ -58,12 +46,15 @@ const initObserver = () => {
     observer.observe(document.body, { childList: true, subtree: true });
 
     console.log(
-      "Google Calendar Event Copy Extension: DOM observation started"
+      "[Google Calendar Event Copy Extension] DOM observation started"
     );
 
     return observer;
   } catch (error) {
-    console.error("Failed to initialize observer:", error);
+    console.error(
+      "[Google Calendar Event Copy Extension] Failed to initialize observer:",
+      error
+    );
     return null;
   }
 };
