@@ -27,12 +27,19 @@ const animateCopyButtonClick = (element) => {
   }, CLICK_DURATION);
 };
 
-const createCopyButton = (onClickHandler) => {
+const createCopyButton = (onClickHandler, onRightClickHandler) => {
   const button = document.createElement("button");
   button.id = COPY_BUTTON_ID;
 
   const copyIcon = createCopyIcon();
   button.addEventListener("click", () => onClickHandler(copyIcon));
+
+  // 右クリックでオプションをトグル
+  button.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    onRightClickHandler(button);
+  });
+
   button.appendChild(copyIcon);
 
   return button;
