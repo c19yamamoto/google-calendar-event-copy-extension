@@ -1,30 +1,4 @@
 /**
- * ボタンのツールチップを更新
- */
-const updateButtonTooltip = (button, withTitleEnabled) => {
-  const status = withTitleEnabled ? "ON" : "OFF";
-  button.title = `Copy event URL to clipboard\nCopy with title: ${status}\n(Right-click to toggle)`;
-};
-
-/**
- * オプションをトグルする
- */
-const toggleCopyWithTitleOption = (button) => {
-  chrome.storage.sync.get(STORAGE_KEYS.WITH_TITLE_ENABLED, (data) => {
-    const currentValue = data[STORAGE_KEYS.WITH_TITLE_ENABLED] || false;
-    const newValue = !currentValue;
-
-    chrome.storage.sync.set(
-      { [STORAGE_KEYS.WITH_TITLE_ENABLED]: newValue },
-      () => {
-        updateButtonTooltip(button, newValue);
-        logInfo(`Copy with title option toggled: ${newValue}`);
-      }
-    );
-  });
-};
-
-/**
  * イベントモーダルにコピーボタンを追加
  */
 const addCopyButtonToModal = () => {
@@ -36,18 +10,7 @@ const addCopyButtonToModal = () => {
   // コンテナが存在し、かつまだボタンが追加されていない場合
   if (container && !container.querySelector(`#${COPY_BUTTON_ID}`)) {
     // コピーボタンを作成
-    const copyButton = createCopyButton(
-      copyEventUrlToClipboard,
-      toggleCopyWithTitleOption
-    );
-
-    // 初期のツールチップを設定
-    chrome.storage.sync.get(STORAGE_KEYS.WITH_TITLE_ENABLED, (data) => {
-      updateButtonTooltip(
-        copyButton,
-        data[STORAGE_KEYS.WITH_TITLE_ENABLED] || false
-      );
-    });
+    const copyButton = createCopyButton(copyEventUrlToClipboard);
 
     // コンテナの最後から2番目に挿入（「閉じる」ボタンの前）
     container.insertBefore(
