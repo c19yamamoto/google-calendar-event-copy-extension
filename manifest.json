@@ -5,7 +5,7 @@
   "description": "Adds a button to copy the event URL to clipboard on Google Calendar",
   "permissions": ["clipboardWrite", "storage"],
   "action": {
-    "default_popup": "popup/popup.html"
+    "default_popup": "options/options.html"
   },
   "options_ui": {
     "page": "options/options.html",
