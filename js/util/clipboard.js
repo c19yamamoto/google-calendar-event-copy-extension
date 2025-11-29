@@ -22,7 +22,7 @@ const copyToClipboard = async (eventUrl, svgElement, title = "") => {
     if (title) {
       const eventData = {
         title: title,
-        html: `<a href="${eventUrl}">${escapeHtml(title)}</a>`,
+        html: `<a href="${encodeURI(eventUrl)}">${escapeHtml(title)}</a>`,
       };
 
       await navigator.clipboard.write([
