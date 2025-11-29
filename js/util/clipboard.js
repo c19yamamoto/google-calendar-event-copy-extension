@@ -5,6 +5,14 @@ const getEventTitle = () =>
   document.querySelector(GOOGLE_CALENDAR_DOM_SELECTORS.TITLE_CLASS)?.dataset
     .text || "";
 
+const escapeHtml = (unsafe) =>
+  unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
 /**
  * イベントURLをクリップボードにコピー
  * ※ タイトルが提供された場合はリッチテキストとしてコピー
@@ -14,7 +22,7 @@ const copyToClipboard = async (eventUrl, svgElement, title = "") => {
     if (title) {
       const eventData = {
         title: title,
-        html: `<a href="${eventUrl}">${title}</a>`,
+        html: `<a href="${eventUrl}">${escapeHtml(title)}</a>`,
       };
 
       await navigator.clipboard.write([
