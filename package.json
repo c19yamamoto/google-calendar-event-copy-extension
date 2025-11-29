@@ -12,12 +12,15 @@
   "license": "MIT",
   "devDependencies": {
     "husky": "9.1.7",
-    "lint-staged": "16.2.6",
-    "prettier": "3.6.2"
+    "lint-staged": "16.2.7",
+    "prettier": "3.7.2"
   },
   "lint-staged": {
     "**/*.{js,json,css,html}": [
       "prettier --write"
     ]
+  },
+  "volta": {
+    "node": "24.11.1"
   }
 }
